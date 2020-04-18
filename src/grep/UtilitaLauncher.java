@@ -13,8 +13,9 @@ public class UtilitaLauncher {
             usage = "Displays constructions containing the given expression.")
     boolean regex;
 
+
     @Option(name = "-v", required = true,
-            usage = "Inverts condition.")
+            usage = "Inverts condition")
     boolean invert;
 
     @Option(name = "-i", required = true,
