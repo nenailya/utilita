@@ -1,9 +1,11 @@
+package grep;
+
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
-import java.io.IOException;
+import java.io.BufferedWriter;
 
 public class UtilitaLauncher {
 
@@ -21,11 +23,11 @@ public class UtilitaLauncher {
 
     @Argument(required = true, metaVar = "word", index = 1,
             usage = "W")
-    String[] word;
+    String word;
 
     @Argument(required = true, metaVar = "inputname", index = 1,
             usage = "W")
-    String[] inputname;
+    String inputname;
 
 
     public static void main(String[] args) {
@@ -45,11 +47,8 @@ public class UtilitaLauncher {
         }
 
         Utilita grep = new Utilita(regex, invert, ignore);
-        try {
-            int result = grep.smthsmth(word, inputname);
-            System.out.println("Total of " + result + " symbols recoded");
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
+        BufferedWriter res = grep.constructor(word, inputname);
+        System.out.println(res);
+
     }
 }
