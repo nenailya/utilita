@@ -3,87 +3,71 @@ package grep
 import java.io.*
 
 
-open class Utilita(regex: Boolean, invert: Boolean, ignore: Boolean) {
-    var regex: Boolean = false
-    var invert: Boolean = false
-    var ignore: Boolean = false
+class Utilita(val regex: Boolean, val invert: Boolean, val ignore: Boolean) {
 
-    class Utilita ( regex: Boolean, invert: Boolean, ignore: Boolean) {
-    }
-
-    fun constructor(word: String, inputname: String): BufferedWriter {
-        val outputName = ""
-        File(outputName).bufferedWriter().use {
-            if (!regex)
-                if (!invert)
-                    if (!ignore)
-                        for (line in File(inputname).readLines()) {
-                            if (word?.let { it1 -> line.contains(it1) }!!) {
-                                it.write(line)
-                                it.newLine()
-                            }
-                        }
-                    else
-                        for (line in File(inputname).readLines()) {
-                            if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
-                                it.write(line)
-                                it.newLine()
-                            }
-                        }
+    fun grep(word: String, inputname: String): MutableList<String> {
+        val it = mutableListOf<String>()
+        if (!regex)
+            if (!invert)
+                if (!ignore)
+                    for (line in File(inputname).readLines()) {
+                        if (word?.let { it1 -> line.contains(it1) }!!){
+                            it.add(line)
+                    }
+                    }
                 else
-                    if (!ignore)
-                        for (line in File(inputname).readLines()) {
-                            if (word?.let { it1 -> line.contains(it1) }!!) {
-                            } else {
-                                it.write(line)
-                                it.newLine()
-                            }
+                    for (line in File(inputname).readLines()) {
+                        if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
+                            it.add(line)
                         }
-                    else
-                        for (line in File(inputname).readLines()) {
-                            if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
-                            } else {
-                                it.write(line)
-                                it.newLine()
-                            }
-
-                        }
+                    }
             else
-                if (!invert)
-                    if (!ignore)
-                        for (line in File(inputname).readLines()) {
-                            if (line.contains(Regex("""$word"""))) {
-                                it.write(line)
-                                it.newLine()
-                            }
+                if (!ignore)
+                    for (line in File(inputname).readLines()) {
+                        if (word?.let { it1 -> line.contains(it1) }!!) {
+                        } else {
+                            it.add(line)
                         }
-                    else
-                        for (line in File(inputname).readLines()) {
-                            if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
-                                it.write(line)
-                                it.newLine()
-                            }
-                        }
+                    }
                 else
-                    if (!ignore)
-                        for (line in File(inputname).readLines()) {
-                            if (line.contains(Regex("""$word"""))) {
-                            } else {
-                                it.write(line)
-                                it.newLine()
-                            }
+                    for (line in File(inputname).readLines()) {
+                        if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
+                        } else {
+                            it.add(line)
                         }
-                    else
-                        for (line in File(inputname).readLines()) {
-                            if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
-                            } else {
-                                it.write(line)
-                                it.newLine()
-                            }
 
+                    }
+        else
+            if (!invert)
+                if (!ignore)
+                    for (line in File(inputname).readLines()) {
+                        if (line.contains(Regex("""$word"""))) {
+                            it.add(line)
                         }
-            return it
-        }
+                    }
+                else
+                    for (line in File(inputname).readLines()) {
+                        if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
+                            it.add(line)
+                        }
+                    }
+            else
+                if (!ignore)
+                    for (line in File(inputname).readLines()) {
+                        if (line.contains(Regex("""$word"""))) {
+                        } else {
+                            it.add(line)
+                        }
+                    }
+                else
+                    for (line in File(inputname).readLines()) {
+                        if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
+                        } else {
+                            it.add(line)
+                        }
+
+                    }
+        return it
     }
 }
 

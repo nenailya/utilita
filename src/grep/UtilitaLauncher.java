@@ -5,11 +5,15 @@ import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
+import java.awt.*;
 import java.io.BufferedWriter;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UtilitaLauncher {
 
-    @Option(name = "-r", metaVar = "Regex", required = true,
+    @Option(name = "-r", required = true,
             usage = "Displays constructions containing the given expression.")
     boolean regex;
 
@@ -22,7 +26,7 @@ public class UtilitaLauncher {
             usage = "Ignores register.")
     boolean ignore;
 
-    @Argument(required = true, metaVar = "word", index = 1,
+    @Argument(required = true, metaVar = "word", index = 0,
             usage = "W")
     String word;
 
@@ -48,7 +52,7 @@ public class UtilitaLauncher {
         }
 
         Utilita grep = new Utilita(regex, invert, ignore);
-        BufferedWriter res = grep.constructor(word, inputname);
+        ArrayList res = (ArrayList) grep.grep(word, inputname);
         System.out.println(res);
 
     }
