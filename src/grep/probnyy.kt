@@ -5,7 +5,7 @@ import java.io.*
 
 class Utilita(val regex: Boolean, val invert: Boolean, val ignore: Boolean) {
 
-    fun grep(word: String, inputname: String): MutableList<String> {
+    fun grep(word: String, inputname: String): List<String> {
         val it = mutableListOf<String>()
         if (!regex)
             if (!invert)
@@ -67,7 +67,7 @@ class Utilita(val regex: Boolean, val invert: Boolean, val ignore: Boolean) {
                         }
 
                     }
-        return it
+        return it.toList()
     }
 }
 
