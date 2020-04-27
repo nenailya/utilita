@@ -48,7 +48,8 @@ public class UtilitaLauncher {
 
         Utilita grep = new Utilita(regex, invert, ignore);
         List<String> res = grep.grep(word, inputname);
-        System.out.println(res);
-
+        for (String str: res) {
+            System.out.println(str);
+        }
     }
 }
