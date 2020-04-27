@@ -17,7 +17,7 @@ class Utilita(val regex: Boolean, val invert: Boolean, val ignore: Boolean) {
                     }
                 else
                     for (line in File(inputname).readLines()) {
-                        if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
+                        if (line.contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
                             it.add(line)
                         }
                     }
@@ -31,7 +31,7 @@ class Utilita(val regex: Boolean, val invert: Boolean, val ignore: Boolean) {
                     }
                 else
                     for (line in File(inputname).readLines()) {
-                        if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
+                        if (line.contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
                         } else {
                             it.add(line)
                         }
@@ -47,7 +47,7 @@ class Utilita(val regex: Boolean, val invert: Boolean, val ignore: Boolean) {
                     }
                 else
                     for (line in File(inputname).readLines()) {
-                        if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
+                        if (line.contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
                             it.add(line)
                         }
                     }
@@ -61,13 +61,13 @@ class Utilita(val regex: Boolean, val invert: Boolean, val ignore: Boolean) {
                     }
                 else
                     for (line in File(inputname).readLines()) {
-                        if (line.trim().contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
+                        if (line.contains(Regex("""$word""", RegexOption.IGNORE_CASE))) {
                         } else {
                             it.add(line)
                         }
 
                     }
-        return it.toList()
+        return it
     }
 }
 
